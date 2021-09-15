@@ -6,7 +6,7 @@
 /*   By: mbaxmann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 14:57:40 by mbaxmann          #+#    #+#             */
-/*   Updated: 2019/12/10 14:10:49 by mbaxmann         ###   ########.fr       */
+/*   Updated: 2021/09/13 18:03:20 by mbaxmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	ft_reverse_tab(char *tab)
 {
 	int		i;
 	int		size;
-	char	tr[ft_strlen(tab) + 1];
+	char	*tr;
 
 	i = 0;
+	tr = (char *)malloc(sizeof(char) * (ft_strlen(tab) + 1));
 	size = ft_strlen(tab);
 	while (tab[i])
 	{
@@ -33,6 +34,19 @@ void	ft_reverse_tab(char *tab)
 		i++;
 	}
 	tab[i] = '\0';
+	free(tr);
+}
+
+int	ft_settr(int nbr, int x)
+{
+	if (x && nbr < 0)
+		return (1);
+	else if (x && nbr >= 0)
+		return (0);
+	if (!x && nbr < 0)
+		return (-nbr);
+	else
+		return (nbr);
 }
 
 void	ft_convert(char *res, int nbr, int pow, char m)
@@ -42,7 +56,7 @@ void	ft_convert(char *res, int nbr, int pow, char m)
 
 	i = 0;
 	if (m == 'd')
-		tr = (nbr < 0) ? -nbr : nbr;
+		tr = ft_settr(nbr, 0);
 	else
 		tr = (unsigned int)nbr;
 	while (pow)
@@ -62,9 +76,9 @@ void	ft_convert(char *res, int nbr, int pow, char m)
 	ft_reverse_tab(res);
 }
 
-int		ft_power(unsigned int tr)
+int	ft_power(unsigned int tr)
 {
-	int pow;
+	int	pow;
 
 	pow = 0;
 	while (tr)
@@ -83,21 +97,22 @@ char	*ft_itoa(int n, char m)
 	char			*res;
 
 	if (m == 'd')
-		tr = (n < 0) ? -n : n;
+		tr = ft_settr(n, 0);
 	else
 		tr = (unsigned int)n;
-	pow = 0;
 	if (n == 0)
 	{
-		if (!(res = (char *)malloc(sizeof(char) * 2)))
+		res = (char *)malloc(sizeof(char) * 2);
+		if (!res)
 			return (NULL);
 		res[0] = '0';
 		res[1] = '\0';
 		return (res);
 	}
 	pow = ft_power(tr);
-	x = (n < 0) ? 1 : 0;
-	if (!(res = (char *)malloc(sizeof(char) * (pow + 1 + x))))
+	x = ft_settr(n, 1);
+	res = (char *)malloc(sizeof(char) * (pow + 1 + x));
+	if (!res)
 		return (NULL);
 	ft_convert(res, n, pow, m);
 	return (res);

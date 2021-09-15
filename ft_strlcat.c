@@ -6,7 +6,7 @@
 /*   By: mbaxmann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:45:21 by mbaxmann          #+#    #+#             */
-/*   Updated: 2019/11/08 14:48:31 by mbaxmann         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:49:03 by mbaxmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_nlength(char *str, size_t max)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (str[i] && i < max)

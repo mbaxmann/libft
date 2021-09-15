@@ -6,15 +6,15 @@
 /*   By: mbaxmann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 10:52:31 by mbaxmann          #+#    #+#             */
-/*   Updated: 2019/11/14 10:11:01 by mbaxmann         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:54:25 by mbaxmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_lenstr(char const *s1)
+int	ft_lenstr(char const *s1)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (s1 == NULL)
@@ -24,14 +24,17 @@ int		ft_lenstr(char const *s1)
 	return (i);
 }
 
-int		ft_is_set(char const *s1, char const *set, int i)
+int	ft_is_set(char const *s1, char const *set, int i)
 {
 	int	j;
 	int	k;
 
 	j = 0;
-	k = (s1[i] == 0) ? -1 : 1;
-	i = (s1[i] == 0) ? --i : i;
+	k = 1;
+	if (s1[i] == 0)
+		k == -1;
+	if (s1[i] == 0)
+		i--;
 	if (!set)
 		return (0 + i);
 	while (s1[i] && set[j])
@@ -49,7 +52,7 @@ int		ft_is_set(char const *s1, char const *set, int i)
 
 char	*ft_set_empty_str(void)
 {
-	char *result;
+	char	*result;
 
 	result = (char *)malloc(sizeof(char) * 1);
 	result[0] = '\0';

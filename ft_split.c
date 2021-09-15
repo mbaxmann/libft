@@ -6,16 +6,16 @@
 /*   By: mbaxmann <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:53:32 by mbaxmann          #+#    #+#             */
-/*   Updated: 2019/11/10 12:13:46 by mbaxmann         ###   ########.fr       */
+/*   Updated: 2021/09/13 17:47:06 by mbaxmann         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_count_words(char const *str, char c)
+int	ft_count_words(char const *str, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -31,7 +31,7 @@ int		ft_count_words(char const *str, char c)
 	return (count);
 }
 
-int		ft_get_len(char const *str, int *i, char c)
+int	ft_get_len(char const *str, int *i, char c)
 {
 	int	len;
 
@@ -46,7 +46,7 @@ int		ft_get_len(char const *str, int *i, char c)
 	return (len);
 }
 
-int		ft_fill(char **result, char const *str, int word_number, char c)
+int	ft_fill(char **result, char const *str, int word_number, char c)
 {
 	int	i;
 	int	k;
@@ -82,13 +82,15 @@ char	**ft_split(char const *s, char c)
 
 	if (s == NULL)
 	{
-		if (!(result = (char **)malloc(sizeof(char *) * 1)))
+		result = (char **)malloc(sizeof(char *) * 1);
+		if (!result)
 			return (NULL);
 		result[0] = NULL;
 		return (result);
 	}
 	word_number = ft_count_words(s, c);
-	if (!(result = (char **)malloc(sizeof(char *) * (word_number + 1))))
+	result = (char **)malloc(sizeof(char *) * (word_number + 1));
+	if (!result)
 		return (NULL);
 	j = ft_fill(result, s, word_number, c);
 	result[j] = NULL;
